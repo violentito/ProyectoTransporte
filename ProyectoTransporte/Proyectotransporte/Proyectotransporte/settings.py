@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Proyectotransporte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["C:/Users/luzor/Desktop/carpetaG/ProyectoTransporte/ProyectoTransporte/Proyectotransporte/AppTransporte/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
