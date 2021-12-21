@@ -3,7 +3,93 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render, HttpResponse
 from django.http import HttpResponse
 from AppTransporte.models import Chofer, Pasajero, Transporte, Terminal
-from AppTransporte.forms import ChoferFormulario, PasajeroFormulario, TransporteFormulario, TerminalFormulario
+from AppTransporte.forms import ChoferFormulario, PasajeroFormulario, TransporteFormulario, TerminalFormulario, UserRegisterForm
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+def register(request):
+
+      if request.method == 'POST':
+
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"AppTransporte/inicio.html" ,  {"mensaje":f"{username} Creado :)"})
+
+
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+
+      return render(request,"AppTransporte/register.html" ,  {"form":form})
+
+def login_request(request):
+
+
+      if request.method == "POST":
+            form = AuthenticationForm(request, data = request.POST)
+
+            if form.is_valid():
+                  usuario = form.cleaned_data.get('username')
+                  contra = form.cleaned_data.get('password')
+
+                  user = authenticate(username=usuario, password=contra)
+
+            
+                  if user is not None:
+                        login(request, user)
+                       
+                        return render(request,"AppTransporte/inicio.html",  {"mensaje":f"Bienvenido {usuario}"} )
+                  else:
+                        
+                        return render(request,"AppTransporte/inicio.html", {"mensaje":"Error, datos incorrectos"} )
+
+            else:
+                        
+                        return render(request,"AppTransporte/inicio.html" ,  {"mensaje":"Error, formulario erroneo"})
+
+      form = AuthenticationForm()
+
+      return render(request,"AppTransporte/login.html", {'form':form} )
+
+                        
+
+
+
+class ChoferDelete(DeleteView):
+
+      model = Chofer
+      success_url = "AppTransporte/chofer/list"
+
+class ChoferUpdate(UpdateView):
+
+      model = Chofer
+      success_url = "AppTransporte/chofer/list"
+      fields = ['nombre', 'apellido', 'numeroDeDocumento', 'numeroDeLicencia']
+
+
+class ChoferCreacion(CreateView):
+
+      model = Chofer
+      success_url = "AppTransporte/chofer/list"
+      fields = ['nombre', 'apellido', 'numeroDeDocumento', 'numeroDeLicencia']
+
+class ChoferDetalle(DetailView):
+
+      model = Chofer
+      template_name = "AppTransporte/chofer_detalle.html"
+
+class ChoferList(ListView):
+
+      model = Chofer
+      template_name = "AppTransporte/chofer_list.html"
+
+
 
 def choferFormulario(request):
     

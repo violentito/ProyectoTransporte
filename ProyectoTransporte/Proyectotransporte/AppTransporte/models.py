@@ -14,6 +14,8 @@ class Chofer(models.Model):
     apellido = models.CharField(max_length=40)
     numeroDeDocumento = models.IntegerField()
     numeroDeLicencia = models.IntegerField()
+    def __str__(self):
+        return f'Apellido: {self.apellido} Numero de documento: {self.numeroDeDocumento}'
 
 class Transporte(models.Model):
     tipo = models.CharField(max_length=40) #Tipo: Aereo o terrestre
