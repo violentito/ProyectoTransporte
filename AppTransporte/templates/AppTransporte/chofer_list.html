@@ -3,14 +3,11 @@
 {% load static %}
 
 {% block contenido2 %}
-<h1 class="mb-1">!!!! TRANSPORTES !!!!</h1>
+<h1 class="mb-1">Lista de choferes</h1>
 {% endblock %}
 
-
 {% block contenido %}
+    {% for chofer in object_list %}
+        <p>Nombre chofer.nombre</p>
 
- <h1> Medio de transporte !!!!! </h1>
-
- <P> El comienzo </P>
- 
 {% endblock %}

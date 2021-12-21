@@ -2,6 +2,7 @@
 from django.urls import path
 from AppTransporte import views
 
+
 urlpatterns = [
   
     path('inicio/', views.inicio, name="Inicio"),
@@ -13,4 +14,10 @@ urlpatterns = [
     path('choferFormulario', views.choferFormulario),
     path('transporteFormulario', views.transporteFormulario),
     path('terminalFormulario', views.terminalFormulario),
+    
+    #Clases basadas en vistas
+
+    path('chofer/list', views.ChoferList, name='List'),
+    
+
 ]

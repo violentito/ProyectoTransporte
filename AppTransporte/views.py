@@ -4,6 +4,12 @@ from django.shortcuts import redirect, render, HttpResponse
 from django.http import HttpResponse
 from AppTransporte.models import Chofer, Pasajero, Transporte, Terminal
 from AppTransporte.forms import ChoferFormulario, PasajeroFormulario, TransporteFormulario, TerminalFormulario
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
+
 
 def choferFormulario(request):
     
@@ -120,3 +126,12 @@ def transporte(request):
 def terminal(request):
     return render(request, "AppTransporte/terminal.html")
 
+class ChoferList(ListView):
+      
+      model = Chofer
+      template_name = "AppTransporte/chofer_list.html"
+
+class ChoferDetalle(DetailView):
+      model = Chofer
+      template_name = "AppTransporte/chofer_detalle.html"
+      
