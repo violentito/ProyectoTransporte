@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, HttpResponse
 from django.http import HttpResponse
+from django.utils.translation import *
 from AppTransporte.models import Chofer, Pasajero, Transporte, Terminal
 from AppTransporte.forms import ChoferFormulario, PasajeroFormulario, TransporteFormulario, TerminalFormulario, UserRegisterForm
 from django.views.generic import ListView
@@ -57,10 +58,66 @@ def login_request(request):
 
       return render(request,"AppTransporte/login.html", {'form':form} )
 
-                        
+## VIEWS TRANSPORTE
+class TransporteDelete(DeleteView):
+
+      model = Transporte
+      success_url = "AppTransporte/transporte/list"
+
+class TransporteUpdate(UpdateView):
+
+      model = Transporte
+      success_url = "AppTransporte/transporte/list"
+      fields = ['tipo', 'empresa', 'capacidad', 'patente']
 
 
+class TransporteCreacion(CreateView):
 
+      model = Transporte
+      success_url = "AppTransporte/transporte/list"
+      fields = ['tipo', 'empresa', 'capacidad', 'patente']
+
+class TransporteDetalle(DetailView):
+
+      model = Transporte
+      template_name = "AppTransporte/transporte_detalle.html"
+
+class TransporteList(ListView):
+
+      model = Transporte
+      template_name = "AppTransporte/transporte_list.html"
+
+
+## VIEWS PASAJERO
+class PasajeroDelete(DeleteView):
+
+      model = Pasajero
+      success_url = "AppTransporte/pasajero/list"
+
+class PasajeroUpdate(UpdateView):
+
+      model = Pasajero
+      success_url = "AppTransporte/pasajero/list"
+      fields = ['nombre', 'apellido', 'numeroDeDocumento', 'vacunado']
+
+
+class PasajeroCreacion(CreateView):
+
+      model = Pasajero
+      success_url = "AppTransporte/pasajero/list"
+      fields = ['nombre', 'apellido', 'numeroDeDocumento', 'vacunado']
+
+class PasajeroDetalle(DetailView):
+
+      model = Pasajero
+      template_name = "AppTransporte/pasajero_detalle.html"
+
+class PasajeroList(ListView):
+
+      model = Pasajero
+      template_name = "AppTransporte/pasajero_list.html"
+
+## VIEWS CHOFER
 class ChoferDelete(DeleteView):
 
       model = Chofer

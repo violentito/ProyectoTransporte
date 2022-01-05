@@ -1,0 +1,29 @@
+{% extends "AppTransporte/padre.html" %}
+ 
+{% load static %}
+
+{% block contenido2 %}
+
+<h1 class="mb-1">Transporte</h1>
+
+{% endblock %}
+
+{% block contenido %}
+
+
+    <body>
+
+        <h1>Detalles del transporte</h1>
+    
+        <p>Tipo de transporte: <i>{{ transporte.tipo }}</i></p>
+        <p>Empresa: <i>{{ transporte.empresa }}</i></p>
+        <p>Capacidad: <i>{{ transporte.capacidad }}</i></p>
+        <p>Patente: <i>{{ Transporte.patente}}</i></p>
+        <p>
+            <a href="{% url 'ListT' %}">Regresar</a>
+        </p>
+
+        
+    </body>
+
+{% endblock %}

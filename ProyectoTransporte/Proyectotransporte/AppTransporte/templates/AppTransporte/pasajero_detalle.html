@@ -1,0 +1,29 @@
+{% extends "AppTransporte/padre.html" %}
+ 
+{% load static %}
+
+{% block contenido2 %}
+
+<h1 class="mb-1">Pasajeros</h1>
+
+{% endblock %}
+
+{% block contenido %}
+
+
+    <body>
+
+        <h1>Detalles del pasajero</h1>
+    
+        <p>Nombre del pasajero: <i>{{ pasajero.nombre }}</i></p>
+        <p>Apellido del pasajero: <i>{{ pasajero.apellido }}</i></p>
+        <p>Numero de Documento: <i>{{ pasajero.numeroDeDocumento }}</i></p>
+        <p>Esta vacunado?: <i>{{ pasajero.vacunado}}</i></p>
+        <p>
+            <a href="{% url 'ListP' %}">Regresar</a>
+        </p>
+
+        
+    </body>
+
+{% endblock %}
